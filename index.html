@@ -65,13 +65,46 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="gatsby-plugin-config">gatsby-plugin-config</h1>
-				<p>Config plugin for gatsby</p>
+				<p>Plugin for gatsby to handle environment variables with ease.</p>
+				<ul>
+					<li><input checked="" disabled="" type="checkbox"> Built in dotenv</li>
+					<li><input checked="" disabled="" type="checkbox"> Handle empty strings</li>
+					<li><input checked="" disabled="" type="checkbox"> Strip out GATSBY_ prefix</li>
+				</ul>
 				<h2 id="usage">Usage</h2>
-				<p>Given the environment variable <code>GATSBY_FLAG=5</code>:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> config <span class="hljs-keyword">from</span> <span class="hljs-string">'gatsby-plugin-config'</span>;
+				<p>Install with npm</p>
+				<pre><code class="language-bash">npm install gatsby-plugin-config -S</code></pre>
+				<p>Import the plugin with import</p>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> config <span class="hljs-keyword">from</span> <span class="hljs-string">'gatsby-plugin-config'</span>;</code></pre>
+				<h3 id="gatsby-variables">GATSBY variables</h3>
+				<p>Variables prefixed with <code>GATSBY_</code> are accessiable from the client side by default. This plugin allows you to query them without the prefix.</p>
+				<pre><code class="language-js"><span class="hljs-comment">// process.env.GATSBY_API_URL</span>
+config.API_URL</code></pre>
+				<h3 id="empty-variables">Empty variables</h3>
+				<p>You don&#39;t have to match empty variables anymore like this:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">if</span> (process.env.GATSBY_IS_STAGING &amp;&amp; process.env.GATSBY_IS_STAGING !== <span class="hljs-string">''</span>) {
+    <span class="hljs-comment">// do something</span>
+}</code></pre>
+				<p>You can now just do:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">if</span> (config.IS_STAGING) {
+    <span class="hljs-comment">// you're done</span>
+}</code></pre>
+				<h3 id="gatsby-config-js">gatsby-config.js</h3>
+				<p>Usage in files without module system (like gatsby-config / gatsby-node etc.)</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gatsby-plugin-config'</span>).default;
 
-<span class="hljs-built_in">console</span>.log(config.FLAG); <span class="hljs-comment">// 5</span>
-<span class="hljs-built_in">console</span>.log(config.NOPE); <span class="hljs-comment">// undefined</span></code></pre>
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">siteMetadata</span>: {
+    <span class="hljs-attr">title</span>: config.SITE_TITLE,
+  },
+};</code></pre>
+				<h3 id="dotenv">Dotenv</h3>
+				<p>You can keep separate dotenv files for each environment in the project root. See <a href="https://github.com/motdotla/dotenv">https://github.com/motdotla/dotenv</a> for more details.</p>
+				<pre><code><span class="hljs-selector-class">.env</span><span class="hljs-selector-class">.development</span>
+<span class="hljs-selector-class">.env</span><span class="hljs-selector-class">.staging</span>
+<span class="hljs-selector-class">.env</span><span class="hljs-selector-class">.production</span></code></pre><p>The format is simply <code>.env.${process.env.NODE_ENV}</code></p>
+				<h2 id="troubleshooting">Troubleshooting</h2>
+				<p>Please file a bug if any issues occour.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
