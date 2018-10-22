@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import path from 'path';
 
 type ObjectEntry = [string, string | undefined];
 
@@ -9,7 +10,7 @@ interface ProcessEnv {
 const PREFIX = 'GATSBY_';
 
 dotenv.config({
-  path: `.env.${process.env.NODE_ENV}`
+  path: path.resolve(process.cwd(), `.env.${process.env.NODE_ENV}`)
 });
 
 function processEnvironmentVariable(
@@ -28,4 +29,4 @@ function processEnvironmentVariable(
 export default Object.entries(process.env).reduce(
   processEnvironmentVariable,
   {}
-);
+) as any;
