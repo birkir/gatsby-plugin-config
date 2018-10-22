@@ -67,13 +67,21 @@
 				<h1 id="gatsby-plugin-config">gatsby-plugin-config</h1>
 				<p>Plugin for gatsby to handle environment variables with ease.</p>
 				<ul>
-					<li><input checked="" disabled="" type="checkbox"> Built in dotenv</li>
 					<li><input checked="" disabled="" type="checkbox"> Handle empty strings</li>
 					<li><input checked="" disabled="" type="checkbox"> Strip out GATSBY_ prefix</li>
 				</ul>
+				<h2 id="install">Install</h2>
+				<p>Install with npm or yarn</p>
+				<pre><code class="language-bash">npm install gatsby-plugin-config dotenv -S</code></pre>
+				<p>In absolute top of your <code>gatsby-config.js</code>:</p>
+				<pre><code class="language-js"><span class="hljs-comment">// Initialize dotenv</span>
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'dotenv'</span>).config({
+  <span class="hljs-attr">path</span>: <span class="hljs-string">`.env.<span class="hljs-subst">${process.env.NODE_ENV}</span>`</span>, <span class="hljs-comment">// or '.env'</span>
+});
+
+<span class="hljs-comment">// And then you can use the config in gatsby-config.js</span>
+<span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gatsby-plugin-config'</span>);</code></pre>
 				<h2 id="usage">Usage</h2>
-				<p>Install with npm</p>
-				<pre><code class="language-bash">npm install gatsby-plugin-config -S</code></pre>
 				<p>Import the plugin with import</p>
 				<pre><code class="language-js"><span class="hljs-keyword">import</span> config <span class="hljs-keyword">from</span> <span class="hljs-string">'gatsby-plugin-config'</span>;</code></pre>
 				<h3 id="gatsby-variables">GATSBY variables</h3>
