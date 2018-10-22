@@ -7,7 +7,14 @@
   "module": "build/module/index.js",
   "repository": "https://github.com/birkir/gatsby-plugin-config",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "config",
+    "dotenv",
+    "environment variables",
+    "env"
+  ],
   "scripts": {
     "info": "npm-scripts-info",
     "build": "run-s clean && run-p build:*",
