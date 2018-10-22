@@ -1,6 +1,3 @@
-import dotenv from 'dotenv';
-import path from 'path';
-
 type ObjectEntry = [string, string | undefined];
 
 interface ProcessEnv {
@@ -8,10 +5,6 @@ interface ProcessEnv {
 }
 
 const PREFIX = 'GATSBY_';
-
-dotenv.config({
-  path: path.resolve(process.cwd(), `.env.${process.env.NODE_ENV}`)
-});
 
 function processEnvironmentVariable(
   acc: ProcessEnv,

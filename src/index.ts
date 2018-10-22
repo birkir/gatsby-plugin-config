@@ -1,1 +1,3 @@
-export * from './lib/config';
+import config from './lib/config';
+
+export default config;

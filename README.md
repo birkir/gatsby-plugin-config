@@ -2,17 +2,29 @@
 
 Plugin for gatsby to handle environment variables with ease.
 
- - [x] Built in dotenv
  - [x] Handle empty strings
  - [x] Strip out GATSBY_ prefix
 
-## Usage
+## Install
 
-Install with npm
+Install with npm or yarn
 
 ```bash
-npm install gatsby-plugin-config -S
+npm install gatsby-plugin-config dotenv -S
 ```
+
+In absolute top of your `gatsby-config.js`:
+```js
+// Initialize dotenv
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`, // or '.env'
+});
+
+// And then you can use the config in gatsby-config.js
+const config = require('gatsby-plugin-config');
+```
+
+## Usage
 
 Import the plugin with import
 
